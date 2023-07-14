@@ -1,0 +1,19 @@
+summary: Fetch many Restaurant
+tasks:
+  - id: postgres_restaurant_search
+    fn: com.gs.datastore
+    args:
+      datasource: postgres
+      data:
+        where:
+          name: <% inputs.body.name %>
+          location: <% inputs.body.location %>
+        select:
+          name: true
+          location: true
+          menuItems:
+            select:
+              name : true
+              couponCode: true
+      config:
+        method: Restaurant.findMany
